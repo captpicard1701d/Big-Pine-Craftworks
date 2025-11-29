@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Big Pine Craftworks — BPIL Merch Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Big Pine Craftworks — Big Pine Island Lake merch and gifts. Stickers, hoodies, tumblers and more for BPIL residents and friends." />
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --primary: #0b5f2a;       /* Craftworks green-ish */
+      --primary-dark: #07381a;
+      --accent: #ffb703;
+      --bg: #f5f5f5;
+      --text: #222;
+      --card-bg: #ffffff;
+    }
+html { font-size: 19px;   /* bump all rem-based text ~19/16 ≈ 19% bigger */
+}
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      font-size: 19px; /* global text size */
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* Layout */
+
+    header {
+      background: #ffffffcc;
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .nav-container {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 0.4rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid #d0d0d0;
+      background: #fff;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.15rem;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      color: var(--primary-dark);
+    }
+
+    .logo span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #555;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.25rem;
+      font-size: 1rem;
+    }
+
+    nav a {
+      position: relative;
+      padding-bottom: 0.1rem;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0%;
+      height: 2px;
+      background: var(--accent);
+      transition: width 0.2s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.7rem 1.3rem;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: 0 4px 10px rgba(7, 56, 26, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(7, 56, 26, 0.3);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary-dark);
+      border: 1px solid var(--primary);
+    }
+
+    .btn-outline:hover {
+      background: #e5f5ea;
+    }
+
+    main {
+      max-width: 1800px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    /* Hero */
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      align-items: center;
+      gap: 2.5rem;
+      padding: 2rem 0 2.5rem;
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 4.6vw, 3.2rem);
+      margin-bottom: 0.75rem;
+      color: var(--primary-dark);
+    }
+
+    .hero-text h1 span {
+      color: var(--accent);
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      max-width: 38rem;
+      margin-bottom: 1.25rem;
+      color: #444;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      font-size: 0.9rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge {
+      background: #e5f5ea;
+      color: var(--primary-dark);
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-note {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .hero-image {
+      background: linear-gradient(135deg, #e0f2f6, #ffffff);
+      border-radius: 22px;
+      padding: 1.1rem 1.1rem 1.3rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+
+    .hero-image-logo {
+      width: 120px;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-image h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .hero-grid-item {
+      background: #fff;
+      border-radius: 14px;
+      padding: 0.6rem 0.7rem;
+      border: 1px solid #e4e4e4;
+    }
+
+    .hero-grid-item strong {
+      display: inline-block;
+      margin-bottom: 0.1rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
+
+    /* Sections */
+
+    section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-heading h2 {
+      font-size: 1.7rem;
+      color: var(--primary-dark);
+    }
+
+    .section-heading p {
+      font-size: 1rem;
+      color: #555;
+    }
+
+    /* Shop Grid */
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1.25rem;
+      font-size: 0.95rem;
+    }
+
+    .filter-pill {
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .filter-pill.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-container {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      nav ul {
+        display: none; /* simple mobile version */
+      }
+      main {
+        padding-inline: 0.9rem;
+      }
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #e4e4e4;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-img {
+      background: #ddeff4;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      color: #666;
+      overflow: hidden;
+    }
+
+    .product-body {
+      padding: 0.8rem 0.9rem 0.9rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      flex: 1;
+    }
+
+    .product-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--primary-dark);
+    }
+
+    .product-price {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .product-meta {
+      font-size: 1rem;
+      color: #777;
+      margin-bottom: 0.4rem;
+    }
+
+    .product-footer {
+      margin-top: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+    }
+
+    .chip {
+      background: #f1f1f1;
+      padding: 0.18rem 0.6rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    /* About / How to Order / Contact */
+
+    .card {
+      background: #fff;
+      border-radius: 18px;
+      padding: 1rem 1.1rem;
+      border: 1px solid #e4e4e4;
+      font-size: 1rem;
+    }
+
+    .card + .card {
+      margin-top: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+      color: var(--primary-dark);
+    }
+
+    .card ul {
+      margin-left: 1.2rem;
+      margin-top: 0.4rem;
+    }
+
+    .card ul li {
+      margin-bottom: 0.25rem;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 1.5rem 1rem 0.5rem;
+    }
+
+    footer a {
+      color: var(--primary);
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav-container">
+      <div class="brand-wrap">
+        <div class="brand-logo">
+          <!-- Craftworks logo -->
+          <img src="images/Big Pine Craftworks Logo W.png" alt="Big Pine Craftworks logo">
+        </div>
+        <div class="logo">
+          Big Pine Craftworks
+          <span>BPIL Merch &amp; Gifts</span>
+        </div>
+      </div>
+
+      <nav>
+        <ul>
+          <li><a href="#shop">Shop</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#how-to-order">How to Order</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <a href="#shop" class="btn btn-primary">View Merch</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="home">
+      <div class="hero-text">
+        <h1>
+          Big Pine Craftworks<br />
+          <span>Big Pine Island Lake merch</span> for residents &amp; friends.
+        </h1>
+        <p>
+          Locally designed apparel, drinkware, stickers, and more celebrating Big Pine Island Lake.
+          All items are limited inventory and sold through Big Pine Craftworks.
+        </p>
+
+        <div class="hero-badges">
+          <div class="badge">Limited stock – message to order</div>
+          <div class="badge">Local pickup around BPIL</div>
+          <div class="badge">Supports lake community &amp; events</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#shop" class="btn btn-primary">Browse Products</a>
+          <a href="https://www.facebook.com/profile.php?id=100067834051790" target="_blank" class="btn btn-outline">
+            Message us on Facebook
+          </a>
+        </div>
+        <div class="hero-note">
+          Click “Browse Products” to see current items and pricing. To confirm
+          inventory or place an order, send us a Facebook message (or email).
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <!-- BPIL lake logo -->
+        <div class="hero-image-logo">
+          <img src="images/Logo Clear with NO background.PNG" alt="Big Pine Island Lake logo">
+        </div>
+        <h2>Big Pine Island Lake Favorites</h2>
+        <div class="hero-grid">
+          <div class="hero-grid-item">
+            <strong>Super Heavyweight Hooded Sweatshirt</strong>
+            <div>$60 · Perfect for cold dock nights and fall bonfires.</div>
+          </div>
+          <div class="hero-grid-item">
+            <strong>Men’s 1/4-Zip Anti-Microbial Hoodie</strong>
+            <div>$50 · Great for cool mornings on the water.</div>
+          </div>
+          <div class="hero-grid-item">
+            <strong>BPIL Tumblers (20 oz &amp; 30 oz)</strong>
+            <div>$15 · Keep drinks cold on the pontoon or at the beach.</div>
+          </div>
+          <div class="hero-grid-item">
+            <strong>Stickers &amp; Decals</strong>
+            <div>From $4 · Show your lake pride on coolers, cars, and mugs.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOP -->
+    <section id="shop">
+      <div class="section-heading">
+        <h2>Shop Big Pine Craftworks</h2>
+        <p>Inventory is limited. Prices may change slightly on future reorders.</p>
+      </div>
+
+      <div class="filters">
+        <div class="filter-pill active">All</div>
+        <div class="filter-pill">Stickers</div>
+        <div class="filter-pill">Drinkware</div>
+        <div class="filter-pill">Apparel</div>
+      </div>
+
+      <div class="product-grid">
+        <!-- Stickers -->
+        <article class="product-card" data-category="Stickers">
+          <div class="product-img">
+            <img src="images/small_sticker.jpg" alt="Small BPIL sticker">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Small BPIL Sticker</div>
+            <div class="product-price">$4.00</div>
+            <div class="product-meta">Perfect for water bottles, coolers, and tackle boxes.</div>
+            <div class="product-footer">
+              <span class="chip">Sticker</span>
+              <span>Limited stock</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Stickers">
+          <div class="product-img">
+            <img src="images/Lake Sticker.jpg" alt="Lake outline sticker">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Lake Outline Sticker</div>
+            <div class="product-price">$4.00</div>
+            <div class="product-meta">
+              Big Pine Island Lake outline design – great for laptops and windows.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Sticker</span>
+              <span>Resident favorite</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Stickers">
+          <div class="product-img">
+            <img src="images/large_sticker.jpg" alt="Large BPIL sticker">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Large BPIL Sticker</div>
+            <div class="product-price">$15.00</div>
+            <div class="product-meta">
+              Larger decal – perfect for dock boxes, doors, or large coolers.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Sticker</span>
+              <span>Limited run</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Drinkware -->
+        <article class="product-card" data-category="Drinkware">
+          <div class="product-img">
+            <img src="images/Koozies.jpg" alt="BPIL koozies">
+          </div>
+          <div class="product-body">
+            <div class="product-title">BPIL Koozies</div>
+            <div class="product-price">$5.00</div>
+            <div class="product-meta">
+              Keep drinks cold at the beach, dock, or campfire. Assorted colors.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Drinkware</span>
+              <span>Multi-pack options</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Drinkware">
+          <div class="product-img">
+            <img src="images/20 oz tumbler.jpg" alt="20 oz BPIL tumbler">
+          </div>
+          <div class="product-body">
+            <div class="product-title">20 oz BPIL tumbler</div>
+            <div class="product-price">$15.00</div>
+            <div class="product-meta">
+              Stainless tumbler – great for morning coffee or evening beverages.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Drinkware</span>
+              <span>20 oz</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Drinkware">
+          <div class="product-img">
+            <img src="images/30 oz Tumblers.jpg" alt="30 oz BPIL tumbler">
+          </div>
+          <div class="product-body">
+            <div class="product-title">30 oz BPIL Tumbler</div>
+            <div class="product-price">$18.00</div>
+            <div class="product-meta">
+              Larger capacity tumbler – ideal for long boat rides and sandbar days.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Drinkware</span>
+              <span>30 oz</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Drinkware">
+          <div class="product-img">
+            <img src="images/Wine Cooler.jpg" alt="BPIL wine cooler">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Wine Cooler</div>
+            <div class="product-price">$15.00</div>
+            <div class="product-meta">
+              Keep a bottle chilled during dinner on the deck or pontoon.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Drinkware</span>
+              <span>Limited</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Drinkware">
+          <div class="product-img">
+            <img src="images/Can Cooler.jpg" alt="BPIL can cooler">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Can Cooler</div>
+            <div class="product-price">$15.00</div>
+            <div class="product-meta">
+              Insulated can cooler with BPIL branding – fits most standard cans.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Drinkware</span>
+              <span>Dock approved</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Apparel -->
+
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Ladies Vneck T.png" alt="Women’s T-shirt">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Women’s T-Shirt</div>
+            <div class="product-price">$20.00</div>
+            <div class="product-meta">
+              Light, comfortable tee — perfect for around the lake or in town.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Women’s</span>
+              <span>V-neck style</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Full Zip Hoodie.jpg" alt="Women’s classic fleece full zip">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Women’s Classic Fleece Full Zip</div>
+            <div class="product-price">$45.00</div>
+            <div class="product-meta">
+              Full-zip fleece with BPIL detail – easy to layer and wear year-round.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Women’s</span>
+              <span>Limited sizes</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Beach pullover Misty Blue.jpg" alt="Ladies beach pullover">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Ladies Beach Pullover</div>
+            <div class="product-price">$50.00</div>
+            <div class="product-meta">
+              Lightweight pullover — ideal for breezy beach days and boat rides.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Women’s</span>
+              <span>Misty Blue / Oyster Shell</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Mens Micro Fiber Tshirt.jpg" alt="Men's Micro Fiber Tshirt">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Mens Micro Fiber Tshirt</div>
+            <div class="product-price">$25.00</div>
+            <div class="product-meta">
+              Micro Fiber Fabric, great for long days on the water and sun protection.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Men’s</span>
+              <span>Limited sizes</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Mint Hoodie.jpg" alt="Men’s hoodie placeholder">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Men’s Hoodie</div>
+            <div class="product-price">$40.00</div>
+            <div class="product-meta">
+              Classic hoodie with BPIL graphic – perfect for fall at the lake.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Men’s</span>
+              <span>Photo may vary</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Super Heavyweight Hooded Sweatshirt2.PNG" alt="Super heavyweight hoodie placeholder">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Super Heavyweight Hooded Sweatshirt</div>
+            <div class="product-price">$60.00</div>
+            <div class="product-meta">
+              Extra thick and warm — campfire and ice-fishing approved.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Unisex</span>
+              <span>Very limited</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: Youth T-Shirt -->
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Youth Tshirt.JPG" alt="Youth BPIL T-Shirt">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Youth T-Shirt</div>
+            <div class="product-price">$15.00</div>
+            <div class="product-meta">
+              Soft cotton youth-sized BPIL shirt. Available in multiple colors depending on inventory.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Youth</span>
+              <span>Sizes S–XL</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- NEW: Winter Hat -->
+        <article class="product-card" data-category="Apparel">
+          <div class="product-img">
+            <img src="images/Winter Hat.JPG" alt="BPIL Winter Hat">
+          </div>
+          <div class="product-body">
+            <div class="product-title">Winter Hat</div>
+            <div class="product-price">$20.00</div>
+            <div class="product-meta">
+              Warm knit winter hat embroidered with the BPIL or Craftworks logo. Great for cold mornings and ice-fishing season.
+            </div>
+            <div class="product-footer">
+              <span class="chip">Apparel</span>
+              <span>One size fits most</span>
+            </div>
+          </div>
+        </article>
+ 
+<!-- NEW: License Plate -->
+        <article class="product-card" data-category="stickers">
+          <div class="product-img">
+            <img src="images/License Plate.JPG" alt="License Plate">
+          </div>
+          <div class="product-body">
+            <div class="product-title">License Plate</div>
+            <div class="product-price">$15.00</div>
+            <div class="product-meta">
+              Metal License Plate with the BPIL logo. Great for car's trucks or UTV.
+            </div>
+            <div class="product-footer">
+              <span class="chip">stickers</span>
+              <span>One size</span>
+            </div>
+          </div>
+        </article>
+
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="section-heading">
+        <h2>About Big Pine Craftworks</h2>
+        <p>Local designs, made for people who love Big Pine Island Lake.</p>
+      </div>
+
+      <div class="card">
+        <h3>By residents, for residents</h3>
+        <p>
+          Big Pine Craftworks is a small, lake-focused brand created around Big Pine Island Lake.
+          We design and source limited-run merch that lets residents and guests show off their love
+          for BPIL from stickers and hats to cozy hoodies and tumblers.
+	</p>
+        <p>
+          Inventory changes as we sell through sizes, colors, and styles, so if you see something
+          you like, it’s best to message us and reserve it.
+        </p>
+	<p>
+          Have an item you want with the lake logo?, have an idea or design of your own? contact us to see if we can help.
+	</p>
+      </div>
+    </section>
+
+    <!-- HOW TO ORDER -->
+    <section id="how-to-order">
+      <div class="section-heading">
+        <h2>How to Order</h2>
+        <p>Most orders are handled through Facebook messages or email.</p>
+      </div>
+
+      <div class="card">
+        <h3>Step-by-step</h3>
+        <ul>
+          <li>Browse the products above and note the item name, size, and quantity.</li>
+          <li>Send us a Facebook message or email with your order details and your name.</li>
+          <li>We’ll confirm current inventory, pricing, and pickup/payment details.</li>
+          <li>Pickup is usually arranged locally around Big Pine Island Lake.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="section-heading">
+        <h2>Contact &amp; Ordering</h2>
+        <p>Reach out with questions about sizing, inventory, or special requests.</p>
+      </div>
+
+      <div class="card">
+        <h3>Get in touch</h3>
+        <p>
+          The fastest way to order is by sending us a direct message on Facebook.
+        </p>
+        <ul>
+          <li>
+            Facebook:
+            <a href="https://www.facebook.com/profile.php?id=100067834051790" target="_blank">
+              Big Pine Craftworks
+            </a>
+          </li>
+          <li>
+            Email:
+            <a href="mailto:apicard1701d@outlook.com">apicard1701d@outlook.com</a>
+          </li>
+        </ul>
+        <p style="margin-top: 0.4rem; font-size: 0.85rem; color: #666;">
+          Please include your name, phone number, item(s), size(s), and quantity so
+          we can confirm stock quickly.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      © <span id="year"></span> Big Pine Craftworks — Big Pine Island Lake Merch &amp; Gifts.
+    </div>
+  </footer>
+
+  <script>
+    // Set current year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple filter logic (front-end only)
+    const filterPills = document.querySelectorAll(".filter-pill");
+    const productCards = document.querySelectorAll(".product-card");
+
+    filterPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const category = pill.textContent.trim();
+
+        filterPills.forEach((p) => p.classList.remove("active"));
+        pill.classList.add("active");
+
+        productCards.forEach((card) => {
+          const cardCategory = card.getAttribute("data-category");
+          if (category === "All" || category === cardCategory) {
+            card.style.display = "";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
